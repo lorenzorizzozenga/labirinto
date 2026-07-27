@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import PageHeader from "../components/PageHeader";
+import FadeIn from "../components/FadeIn";
+import { StaggerTbody, StaggerTr } from "../components/StaggerTable";
 
 export const metadata: Metadata = {
   title: "Servizi — Labirinto",
@@ -34,8 +36,8 @@ export default function Servizi() {
   return (
     <>
       <PageHeader title="SERVIZI" />
-      <div className="px-8 py-6">
-        <table className="w-full text-sm">
+      <FadeIn className="px-4 md:px-8 py-6 overflow-x-auto">
+        <table className="w-full text-sm min-w-[520px]">
           <thead>
             <tr className="border-b border-zinc-200">
               {columns.map((col) => (
@@ -48,17 +50,17 @@ export default function Servizi() {
               ))}
             </tr>
           </thead>
-          <tbody>
+          <StaggerTbody>
             {services.map((s) => (
-              <tr key={s.name} className="align-top">
+              <StaggerTr key={s.name} className="align-top">
                 <td className="py-4 pr-4 w-56">{s.name}</td>
                 <td className="py-4 pr-4 text-zinc-600">{s.description}</td>
                 <td className="py-4 pr-4 w-24">{s.progetti}</td>
-              </tr>
+              </StaggerTr>
             ))}
-          </tbody>
+          </StaggerTbody>
         </table>
-      </div>
+      </FadeIn>
     </>
   );
 }

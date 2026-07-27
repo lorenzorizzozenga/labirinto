@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import PageHeader from "../components/PageHeader";
+import FadeIn from "../components/FadeIn";
+import { StaggerTbody, StaggerTr } from "../components/StaggerTable";
 
 export const metadata: Metadata = {
   title: "Progetti — Labirinto",
@@ -64,8 +66,8 @@ export default function Progetti() {
   return (
     <>
       <PageHeader title="PROGETTI" />
-      <div className="px-8 py-6">
-        <table className="w-full text-sm">
+      <FadeIn className="px-4 md:px-8 py-6 overflow-x-auto">
+        <table className="w-full text-sm min-w-[640px]">
           <thead>
             <tr className="border-b border-zinc-200">
               {columns.map((col) => (
@@ -79,9 +81,9 @@ export default function Progetti() {
               ))}
             </tr>
           </thead>
-          <tbody>
+          <StaggerTbody>
             {projects.map((p) => (
-              <tr key={p.name} className="align-top">
+              <StaggerTr key={p.name} className="align-top">
                 <td className="py-4 pr-4">{p.name}</td>
                 <td className="py-4 pr-4">{p.year}</td>
                 <td className="py-4 pr-4">
@@ -98,11 +100,11 @@ export default function Progetti() {
                 </td>
                 <td className="py-4 pr-4">{p.client}</td>
                 <td className="py-4 pr-4">{p.creature}</td>
-              </tr>
+              </StaggerTr>
             ))}
-          </tbody>
+          </StaggerTbody>
         </table>
-      </div>
+      </FadeIn>
     </>
   );
 }
